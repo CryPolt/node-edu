@@ -1,18 +1,10 @@
 const fs = require('fs');
 
-// read file
-const pathToFile = 'test/file.txt';
+// read json file
 
-const data = fs.readFileSync(pathToFile, {
-    encoding: 'utf8',
-    flag: 'r',
+const data = fs.readFileSync('./test/example_2.json', {
+    encoding: 'utf8'
 });
-console.log(data);
 console.log(typeof data);
-
-// split the file line by line
-
-let dataArr = data.split('\r\n');
-dataArr = dataArr.filter(line => line.trim() !== '');
-console.log(dataArr)
-
+let dataObj = JSON.parse(data);
+console.log(dataObj);
