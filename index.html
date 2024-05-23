@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./script/script.js">
+</head>
+<body>
+
+<script>
+
+    // let promise = new Promise(function(resolve, reject) {
+    //     setTimeout(() => reject(new Error("Whoops!")), 1000);
+    // });
+    //
+    // // reject запустит вторую функцию, переданную в .then
+    // promise.then(
+    //     result => alert(result), // не будет запущена
+    //     error => alert(error) // выведет "Error: Whoops!" спустя одну секунду
+    // );
+
+    // let promise = new Promise(resolve => {
+    //     setTimeout(() => resolve("done!"), 1000);
+    // });
+    //
+    // promise.then(alert); // выведет "done!" спустя одну секунду
+
+    // let promise = new Promise((resolve,reject) => {
+    //    setTimeout(() => reject(new Error('error!')),1000);
+    // });
+    // // .catch(f) это то же самое, что promise.then(null, f)
+    // promise.catch(alert);
+
+    // new Promise((resolve, reject) => {
+    //     setTimeout(() => resolve("value"), 2000);
+    // })
+    //     .finally(() => alert("Промис завершён")) // срабатывает первым
+    //     .then(result => alert(result)); // <-- .then показывает "value"
+    //
+
+    // window.addEventListener('unhandledrejection', function(event) {
+    //     // объект события имеет два специальных свойства:
+    //     alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
+    //     alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
+    // });
+    //
+    // new Promise(function() {
+    //     throw new Error("Ошибка!");
+    // }); // нет обработчика ошибок
+    // let urls = [
+    //     'https://api.github.com/users/iliakan',
+    //     'https://api.github.com/users/remy',
+    //     'https://api.github.com/users/jeresig'
+    // ];
+
+    // Преобразуем каждый URL в промис, возвращённый fetch
+    // let requests = urls.map(url => fetch(url));
+    //
+    // // Promise.all будет ожидать выполнения всех промисов
+    // Promise.all(requests)
+    //     .then(responses => responses.forEach(
+    //         response => alert(`${response.url}: ${response.status}`)
+    //     ));
+
+
+    let names = ['crypolt', 'remy', 'jeresig'];
+
+    let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+
+    Promise.all(requests)
+        .then(responses => {
+            // все промисы успешно завершены
+            for(let response of responses) {
+                alert(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
+            }
+
+            return responses;
+        })
+        // преобразовать массив ответов response в response.json(),
+        // чтобы прочитать содержимое каждого
+        .then(responses => Promise.all(responses.map(r => r.json())))
+        // все JSON-ответы обработаны, users - массив с результатами
+        .then(users => users.forEach(user => alert(user.name)));
+
+    Promise.all([
+        fetch('/template.html'),
+        fetch('/style.css'),
+        fetch('/data.json')
+    ]).then(render);
+
+
+    let urls = [
+        'https://api.github.com/users/crypolt',
+        'https://api.github.com/users/remysad',
+        'https://no-such-url'
+    ];
+
+    Promise.allSettled(urls.map(url => fetch(url)))
+        .then(results => { // (*)
+            results.forEach((result, num) => {
+                if (result.status === "fulfilled") {
+                    alert(`${urls[num]}: ${result.value.status}`);
+                }
+                if (result.status === "rejected") {
+                    alert(`${urls[num]}: ${result.reason}`);
+                }
+            });
+        });
+</script>
+
+</body>
+</html>
