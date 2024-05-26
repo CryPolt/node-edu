@@ -1,14 +1,5 @@
 {
-  "watch": {
-    "test": "index.js"
-  },
-  "scripts": {
-    "test": "index.js",
-    "watch": "npm-watch"
-  },
   "dependencies": {
-    "node": "^18.20.3",
-    "npm-watch": "^0.13.0",
-    "tape": "^5.7.5"
+    "vue": "^3.4.27"
   }
 }
