@@ -58,20 +58,26 @@
 // ]).then(render);
 // console.log(promise)
 
-let urls = [
-    'https://api.github.com/users/crypolt',
-    'https://api.github.com/users/remykjjkj',
-    'https://no-such-url'
-];
+// let urls = [
+//     'https://api.github.com/users/crypolt',
+//     'https://api.github.com/users/remykjjkj',
+//     'https://no-such-url'
+// ];
+//
+// Promise.allSettled(urls.map(url => fetch(url)))
+//     .then(results => { // (*)
+//         results.forEach((result, num) => {
+//             if (result.status === "fulfilled") {
+//                 console.log(`${urls[num]}: ${result.value.status}`);
+//             }
+//             if (result.status === "rejected") {
+//                 console.log(`${urls[num]}: ${result.reason}`);
+//             }
+//         });
+//     });
 
-Promise.allSettled(urls.map(url => fetch(url)))
-    .then(results => { // (*)
-        results.forEach((result, num) => {
-            if (result.status === "fulfilled") {
-                console.log(`${urls[num]}: ${result.value.status}`);
-            }
-            if (result.status === "rejected") {
-                console.log(`${urls[num]}: ${result.reason}`);
-            }
-        });
-    });
+let counter = 0;
+function func() {
+    counter++;
+    console.log('counter'+ counter);
+}

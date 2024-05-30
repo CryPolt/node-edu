@@ -10,7 +10,62 @@
 </head>
 <body>
 
+
+<button type="submit" id="btn">button</button>
+
+
+<form id="main-form" onsubmit="return checkForm(this)" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Name" required="required">
+    <input type="submit" name="submit" value="Yes">
+</form>
+
+
+
 <script>
+
+    // let age = prompt("Сколько Вам лет?", 18);
+    //
+    // let welcome = (age < 18) ?
+    //     () => alert('Привет!') :
+    //     () => alert("Здравствуйте!");
+    //
+    // welcome();
+
+
+    // let btn = onclick = document.getElementById("btn");
+    //
+    // let counter = 0;
+    // function onclick(e) {
+    //     counter++;
+    //     console.log('clicked' + counter);
+    // }
+
+    // let counter = 0;
+    // function func() {
+    //     counter++;
+    //     console.log('counter'+ counter);
+    // }
+    //
+    // // function checkForm(element){
+    // //     let name = element.name.value;
+    // //     let message = (name < 3) ? 'menee 3' :
+    // //         (name > 3) ?'bolse 3';
+    // //
+    // //     console.log(name)
+    // //     return false;
+    // // }
+    //
+    // function checkForm(element) {
+    //     let name = element.name.value;
+    //
+    //     let message = (name.length >= 3) ? 'menee 3' :
+    //         (name.length <= 18) ? 'ne bolshe 18' :
+    //                 'yspex';
+    //
+    //     alert( message );
+    // }
+
 
     // let promise = new Promise(function(resolve, reject) {
     //     setTimeout(() => reject(new Error("Whoops!")), 1000);
@@ -65,50 +120,50 @@
     //         response => alert(`${response.url}: ${response.status}`)
     //     ));
 
-
-    let names = ['crypolt', 'remy', 'jeresig'];
-
-    let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
-
-    Promise.all(requests)
-        .then(responses => {
-            // все промисы успешно завершены
-            for(let response of responses) {
-                alert(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
-            }
-
-            return responses;
-        })
-        // преобразовать массив ответов response в response.json(),
-        // чтобы прочитать содержимое каждого
-        .then(responses => Promise.all(responses.map(r => r.json())))
-        // все JSON-ответы обработаны, users - массив с результатами
-        .then(users => users.forEach(user => alert(user.name)));
-
-    Promise.all([
-        fetch('/template.html'),
-        fetch('/style.css'),
-        fetch('/data.json')
-    ]).then(render);
-
-
-    let urls = [
-        'https://api.github.com/users/crypolt',
-        'https://api.github.com/users/remysad',
-        'https://no-such-url'
-    ];
-
-    Promise.allSettled(urls.map(url => fetch(url)))
-        .then(results => { // (*)
-            results.forEach((result, num) => {
-                if (result.status === "fulfilled") {
-                    alert(`${urls[num]}: ${result.value.status}`);
-                }
-                if (result.status === "rejected") {
-                    alert(`${urls[num]}: ${result.reason}`);
-                }
-            });
-        });
+    //
+    // let names = ['crypolt', 'remy', 'jeresig'];
+    //
+    // let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+    //
+    // Promise.all(requests)
+    //     .then(responses => {
+    //         // все промисы успешно завершены
+    //         for(let response of responses) {
+    //             alert(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
+    //         }
+    //
+    //         return responses;
+    //     })
+    //     // преобразовать массив ответов response в response.json(),
+    //     // чтобы прочитать содержимое каждого
+    //     .then(responses => Promise.all(responses.map(r => r.json())))
+    //     // все JSON-ответы обработаны, users - массив с результатами
+    //     .then(users => users.forEach(user => alert(user.name)));
+    //
+    // Promise.all([
+    //     fetch('/template.html'),
+    //     fetch('/style.css'),
+    //     fetch('/data.json')
+    // ]).then(render);
+    //
+    //
+    // let urls = [
+    //     'https://api.github.com/users/crypolt',
+    //     'https://api.github.com/users/remysad',
+    //     'https://no-such-url'
+    // ];
+    //
+    // Promise.allSettled(urls.map(url => fetch(url)))
+    //     .then(results => { // (*)
+    //         results.forEach((result, num) => {
+    //             if (result.status === "fulfilled") {
+    //                 alert(`${urls[num]}: ${result.value.status}`);
+    //             }
+    //             if (result.status === "rejected") {
+    //                 alert(`${urls[num]}: ${result.reason}`);
+    //             }
+    //         });
+    //     });
 </script>
 
 </body>
