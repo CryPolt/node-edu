@@ -5,166 +5,208 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="./script/script.js">
+    <title>es6 <!--...Spread--> ...Rest</title>
 </head>
 <body>
 
-
-<button type="submit" id="btn">button</button>
-
-
-<form id="main-form" onsubmit="return checkForm(this)" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" placeholder="Name" required="required">
-    <input type="submit" name="submit" value="Yes">
-</form>
-
-
-
+<div class="cars">
+    <span>Tesla</span>
+    <span>Nissan</span>
+    <span>BMW</span>
+</div>
 <script>
-
-    // let age = prompt("Сколько Вам лет?", 18);
-    //
-    // let welcome = (age < 18) ?
-    //     () => alert('Привет!') :
-    //     () => alert("Здравствуйте!");
-    //
-    // welcome();
-
-
-    // let btn = onclick = document.getElementById("btn");
-    //
-    // let counter = 0;
-    // function onclick(e) {
-    //     counter++;
-    //     console.log('clicked' + counter);
+    // const car = {
+    //     name: 'kia',
+    //     year: 2015
     // }
+    //     const html = `
+    //     <div>
+    //      <h1>${car.name}</h1>
+    //      <p>${car.year}</p>
+    //     </div>
+    // `;
+    // document.body.innerHTML = html;
 
-    // let counter = 0;
-    // function func() {
-    //     counter++;
-    //     console.log('counter'+ counter);
+
+    // const cars = [
+    //     {
+    //         name: `kia`,
+    //         year: 2015
+    //     },
+    //     {
+    //         name: `bmw`,
+    //         year: 2020
+    //     }
+    // ]
+    //
+    // const html = `
+    //     <ul>
+    //      ${cars.map(car => `<li>${car.name}</li>`).join('')}
+    //      </ul>
+    // `;
+    // document.body.innerHTML = html;
+
+// const car = {
+//     name: 'bmw',
+//     year: 2020,
+//     tags: ['electric','modern','fast']
+//     /*info: `new car`*/
+// }
+//
+// const renderTags = (tags) => {
+//     return `
+//     <ul>
+//     ${tags.map(tag => `<li>${tag}</li>`).join('')}
+//     </ul>
+//     `;
+// }
+//
+// const html = `
+//     <div>
+//         <p>name ${car.name}</p>
+//         <p>year ${car.year}</p>
+//         ${car.info ? `<p>info ${car.info}</p>` : ''}
+//         ${renderTags(car.tags)}
+//     </div>
+// `;
+// document.body.innerHTML = html;
+
+/*    const width = "150mm";
+    const auto = {
+        name: 'auto',
+        year: 2020,
+        color: 'black',
+        dimensions: {
+            size: {
+                width: "200mm",
+                length: "100mm",
+            }
+        }
+    }
+
+/!*
+    const {name,year,color} = auto;
+    console.log(name,year,color)
+*!/
+
+    const {width: Carwidth, length} = auto.dimensions.size;
+    console.log(Carwidth,length)*/
+
+/*    const auto = {
+        name: 'bmw',
+        color: 'red'
+    }
+
+    const {name,color = 'green'} = auto;
+    console.log(name,color)*/
+
+/*    const auto = ['bmw','2000','green'];
+
+    const [name,year,color] = auto;
+    console.log(name,year,color)*/
+
+/*    const auto = 'bmw,2000,green,20,discount';
+
+    const [name,year,color, ...dealer] = auto.split(',');
+    console.log(name,year,color, dealer)
+
+    const [quantity,discount] = dealer;
+    console.log(quantity,discount)*/
+
+/*    let left = 'left';
+    let right = 'right';
+
+    [right,left] = [left,right]
+    console.log({left,right})*/
+
+    // function convertRubles(rubles) {
+    //     const complete = {
+    //         EUR: rubles * 80,
+    //         USD: rubles * 70,
+    //         GBP: rubles * 100
+    //     }
+    //     return complete;
     // }
     //
-    // // function checkForm(element){
-    // //     let name = element.name.value;
-    // //     let message = (name < 3) ? 'menee 3' :
-    // //         (name > 3) ?'bolse 3';
-    // //
-    // //     console.log(name)
-    // //     return false;
-    // // }
+    // const {EUR,USD,GBP} = convertRubles(5000);
+    // // console.log(EUR,USD,GBP)
     //
-    // function checkForm(element) {
-    //     let name = element.name.value;
-    //
-    //     let message = (name.length >= 3) ? 'menee 3' :
-    //         (name.length <= 18) ? 'ne bolshe 18' :
-    //                 'yspex';
-    //
-    //     alert( message );
+    // function getTotal({total,shipment = 0.1} = {}){
+    //     return total + total * shipment;
     // }
+    // const total = getTotal({shipment: 0.2, total: 1000});
+    // console.log(total)
+
+/*    const regular = ['VW', 'skoda','audi'];
+    const electric = ['tesla','bmw','jaguar'];
+
+    const cars = [...regular, 'Mercedes Benz',...electric];
+
+    const carsNew = [...cars];
+    carsNew[0] = 'Motorcycle';
+    console.log(cars)
+    console.log(carsNew)*/
+/*
+    const word = 'electric';
+    const letters = [...word];
+    console.log(letters)*/
+
+    // const cars = [...Array.from(document.querySelectorAll('.cars span'))];
+    // console.log(cars)
+    // const autos = cars.map(car => car.textContent);
+    // console.log(autos)
+
+/*    const cars = {
+        name: 'tesla',
+        year: 2020,
+        tags: ['fast','new','electric']
+    }
+    const carTags = [...cars.tags];
+    console.log(carTags)*/
+
+/*    const cars = [
+        {name: 'tesla', id: 2501},
+        {name: 'bmw', id: 2502},
+        {name: 'nissan', id: 2503},
+        {name: 'jaguar', id: 2504},
+        {name: 'jac', id: 2505}
+
+    ];
+    const objectId = 2503;
+    const indexId = cars.findIndex(car => car.id === objectId);
+/!*    console.log(cars.slice(0, indexId + 1))*!/
+    const carsNew = [...cars.slice(0,indexId),cars.slice(indexId + 1)];
+    console.log(carsNew)*/
+
+/*    const regular = ['VW', 'skoda','audi'];
+    const electric = ['tesla','bmw','jaguar'];
+
+    regular.push(...electric)
+    console.log(regular)*/
+
+/*    const car = ['tesla',2021];
+    function displayCar(title,year){
+        console.log(`Auto ${title} - ${year} year`)
+    }
+    displayCar(...car)*/
+
+/*function convertUsd(rate, ...totals) {
+    console.log(rate,totals)
+    return totals.map(total => total / rate)
+}
+
+const total = convertUsd(70, 1000, 800, 6300, 2500,21312,1,)
+    console.log(total)*/
+/*
+    const car = ['Tesla',111,'red','50000','10%','4wd'];
+    const [name,id,...options] = car;
+    console.log(name,id,options)*/
 
 
-    // let promise = new Promise(function(resolve, reject) {
-    //     setTimeout(() => reject(new Error("Whoops!")), 1000);
-    // });
-    //
-    // // reject запустит вторую функцию, переданную в .then
-    // promise.then(
-    //     result => alert(result), // не будет запущена
-    //     error => alert(error) // выведет "Error: Whoops!" спустя одну секунду
-    // );
 
-    // let promise = new Promise(resolve => {
-    //     setTimeout(() => resolve("done!"), 1000);
-    // });
-    //
-    // promise.then(alert); // выведет "done!" спустя одну секунду
-
-    // let promise = new Promise((resolve,reject) => {
-    //    setTimeout(() => reject(new Error('error!')),1000);
-    // });
-    // // .catch(f) это то же самое, что promise.then(null, f)
-    // promise.catch(alert);
-
-    // new Promise((resolve, reject) => {
-    //     setTimeout(() => resolve("value"), 2000);
-    // })
-    //     .finally(() => alert("Промис завершён")) // срабатывает первым
-    //     .then(result => alert(result)); // <-- .then показывает "value"
-    //
-
-    // window.addEventListener('unhandledrejection', function(event) {
-    //     // объект события имеет два специальных свойства:
-    //     alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
-    //     alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
-    // });
-    //
-    // new Promise(function() {
-    //     throw new Error("Ошибка!");
-    // }); // нет обработчика ошибок
-    // let urls = [
-    //     'https://api.github.com/users/iliakan',
-    //     'https://api.github.com/users/remy',
-    //     'https://api.github.com/users/jeresig'
-    // ];
-
-    // Преобразуем каждый URL в промис, возвращённый fetch
-    // let requests = urls.map(url => fetch(url));
-    //
-    // // Promise.all будет ожидать выполнения всех промисов
-    // Promise.all(requests)
-    //     .then(responses => responses.forEach(
-    //         response => alert(`${response.url}: ${response.status}`)
-    //     ));
-
-    //
-    // let names = ['crypolt', 'remy', 'jeresig'];
-    //
-    // let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
-    //
-    // Promise.all(requests)
-    //     .then(responses => {
-    //         // все промисы успешно завершены
-    //         for(let response of responses) {
-    //             alert(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
-    //         }
-    //
-    //         return responses;
-    //     })
-    //     // преобразовать массив ответов response в response.json(),
-    //     // чтобы прочитать содержимое каждого
-    //     .then(responses => Promise.all(responses.map(r => r.json())))
-    //     // все JSON-ответы обработаны, users - массив с результатами
-    //     .then(users => users.forEach(user => alert(user.name)));
-    //
-    // Promise.all([
-    //     fetch('/template.html'),
-    //     fetch('/style.css'),
-    //     fetch('/data.json')
-    // ]).then(render);
-    //
-    //
-    // let urls = [
-    //     'https://api.github.com/users/crypolt',
-    //     'https://api.github.com/users/remysad',
-    //     'https://no-such-url'
-    // ];
-    //
-    // Promise.allSettled(urls.map(url => fetch(url)))
-    //     .then(results => { // (*)
-    //         results.forEach((result, num) => {
-    //             if (result.status === "fulfilled") {
-    //                 alert(`${urls[num]}: ${result.value.status}`);
-    //             }
-    //             if (result.status === "rejected") {
-    //                 alert(`${urls[num]}: ${result.reason}`);
-    //             }
-    //         });
-    //     });
 </script>
+
+
 
 </body>
 </html>
