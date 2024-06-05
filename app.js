@@ -1,4 +1,4 @@
-import { random, uniq } from 'lodash';
+import {countBy, random, uniq} from 'lodash';
 import axios from 'axios';
 import { getCities, key, citiesUrl as url, mapCities, month, number as num } from './src/constants';
 
