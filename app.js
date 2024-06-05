@@ -25,7 +25,7 @@ getCities().then((cities) => {
 });
 
 
-
+`q`
 /*for*/
 const cars = ['Tesla','BMW','TOYOTA','AUDI'];
 
