@@ -1,6 +1,9 @@
 <script>
+import User from "@/components/User.vue";
 
 export default {
+  components: { User },
+
   data(){
     return {
       users: [],
@@ -11,15 +14,22 @@ export default {
     }
   },
   methods: {
+
+    sendDate() {
+
+    },
+    deleteUser(index){
+      this.users.splice(index, 1);
+      console.log(index, "Deleted")
+    },
+
     sendData() {
       if (this.username === ''){
         this.error = 'name not found';
-        return;
-      } else if(this.userEmail) {
-        this.error = 'email not found';
-        return;
       } else if(this.userPassword) {
         this.error = 'password not found';
+      }else if(this.userEmail) {
+        this.error = 'email not found';
         return;
       }
 
@@ -29,29 +39,23 @@ export default {
         email: this.userEmail
       })
     }
-  }
+    }
 }
 
 </script>
 
 <template>
 
-  <form action="">
-    <input type="text" name="" id="" placeholder="name" v-model="username">
-    <input type="password" name="" id="" placeholder="password" v-model="userPassword">
-    <input type="email" name="" id="" placeholder="email" v-model="userEmail">
+    <input type="text" placeholder="name" v-model="username">
+    <input type="text" placeholder="password" v-model="userPassword">
+    <input type="email" placeholder="email" v-model="userEmail">
     <p className="error"> {{error}}</p>
     <button type="button" v-on:click="sendData()">send</button>
-
     <div v-if="users.length === 0" className="users">
       not users
     </div>
 
-    <div v-for="(el,index) in users" :key="index">
-        <h3>{{el.name}}</h3>
-        <p>{{el.email}} - <b>{{el.password}}</b></p>
-    </div>
-  </form>
+    <user v-for="(el,index) in users" :key="index" :user="el" :index="index" :deleteUser="deleteUser"/>
 
 </template>
 
