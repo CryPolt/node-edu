@@ -1,5 +1,5 @@
 {
-  "name": "vue-project",
+  "name": "vue-app-crypto-exchang",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.2",
     "vue": "^3.4.21"
   },
   "devDependencies": {

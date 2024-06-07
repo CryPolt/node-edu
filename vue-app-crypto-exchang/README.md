@@ -1,4 +1,4 @@
-# vue-project
+# vue-app-crypto-exchang
 
 This template should help get you started developing with Vue 3 in Vite.
 
