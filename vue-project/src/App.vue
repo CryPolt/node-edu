@@ -1,10 +1,14 @@
 <script>
+import axios from "axios";
 
 export default {
   data(){
     return {
       city: "",
-      error: ""
+      error: "",
+      info: null,
+      timezone: null,
+      key: `ace24327d3a04f90c0e580874750c749`
     }
   },
   methods: {
@@ -14,7 +18,13 @@ export default {
         this.error = "more symbols | your < 2"
         return false
       }
-      this.error = '';
+      this.error = ''
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.key}`)
+          .then(res => {
+            this.info = res.data.main
+            this.timezone = res.data.timezone
+          })
+
     }
 
 
@@ -22,15 +32,30 @@ export default {
   computed: {
     cityName() {
       return "<" + this.city + ">"
+    },
+    showTemp() {
+      return this.info ? "Temperature: " + this.info.temp : ''
+    },
+    showFeelsLike() {
+      return this.info ? "Temp sad: " + this.info.feels_like : ''
+    },
+    showMinTemp() {
+      return this.info ? "Temp min: " + this.info.temp_min : ''
+    },
+    showMaxTemp(){
+      return this.info ? "Temp Max: " + this.info.temp_max : ''
+    },
+    showTimeZone(){
+      return this.timezone ? "Time Zone: " + this.timezone : ""
     }
   }
 }
-ace24327d3a04f90c0e580874750c749
+
 
 </script>
 
 <template>
-
+ps
   <div class="wrapper">
     <h1>Weather app</h1>
     <p>Weather in {{ city === '' ? "your city" : cityName}}</p>
@@ -38,6 +63,17 @@ ace24327d3a04f90c0e580874750c749
     <button v-if="city !== ''" @click="getWeather()">Weather</button>
     <button disabled v-else>Weather input</button>
     <p class="error">{{error}}</p>
+
+
+    <div class="" v-if="info != null">
+      <p>{{ showTemp }}</p>
+      <p>{{ showFeelsLike }}</p>
+      <p> {{ showMaxTemp }} </p>
+      <p>{{ showMinTemp}}</p>
+      <p>{{ showTimeZone}}</p>
+
+    </div>
+
   </div>
 
 </template>
