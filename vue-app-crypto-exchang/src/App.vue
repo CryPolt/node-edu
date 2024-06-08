@@ -16,6 +16,7 @@ export default {
       result: 0
     };
   },
+  
   methods: {
     changeAmount(val) {
       this.amount = val;
