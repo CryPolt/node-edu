@@ -16,7 +16,7 @@ export default {
       result: 0
     };
   },
-  
+
   methods: {
     changeAmount(val) {
       this.amount = val;
@@ -64,8 +64,8 @@ export default {
     <h1>CRYPTO</h1>
     <div class="form-container">
       <inputform @changeAmount="changeAmount" @convert="convert" />
-      <p v-if="error != '' ">{{ error }}</p>
-      <p v-if="result != 0 "> {{result}}</p>
+      <p v-if="error !== '' ">{{ error }}</p>
+      <p v-if="result !== 0 "> {{result}}</p>
     </div>
     <div class="selectors">
       <selector @set-crypto="setCryptoFirst" />
