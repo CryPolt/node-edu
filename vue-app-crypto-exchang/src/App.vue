@@ -60,12 +60,22 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>CRYPTO</h1>
-    <div class="form-container">
-      <inputform @changeAmount="changeAmount" @convert="convert" />
-      <p v-if="error !== '' ">{{ error }}</p>
-      <p v-if="result !== 0 "> {{result}}</p>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  <div>
+   <header>
+    <h1 class="headertext">CRYPTO</h1>
+   </header>
+    <div class="card-body">
+      <div class="form">
+        <inputform @changeAmount="changeAmount" @convert="convert" />
+      </div>
+      <div class="result">
+        <p>Result</p>
+        <p v-if="result !== 0 "> {{result}}</p>
+      </div>
+      <div class="error">
+        <p>Error</p>
+        <p v-if="error !== '' ">{{ error }}</p>
+      </div>
     </div>
     <div class="selectors">
       <selector @set-crypto="setCryptoFirst" />
@@ -76,8 +86,8 @@ export default {
 </template>
 
 <style scoped>
-.form-container {
-  margin-top: 20px;
+.card-body {
+  margin-top: 6em;
   display: flex;
   justify-content: center;
 }
@@ -87,6 +97,34 @@ export default {
   justify-content: space-around;
   width: 700px;
   margin: 20px auto;
+}
+
+.error {
+  border: black solid 2px;
+  border-radius: 10px;
+  background-color: #181818;
+  text-align: center;
+  color: red;
+  font-weight: lighter;
+  margin-left: 2em;
+  -ms-flex-align: center;
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+
+.result {
+  border: black solid 2px;
+  border-radius: 10px;
+  background-color: #181818;
+  text-align: center;
+  color: green;
+  font-weight: lighter;
+  margin-left: 2em;
+  -ms-flex-align: center;
+  width: 100px;
+  height: 40px;
+  position: relative;
 }
 
 </style>
