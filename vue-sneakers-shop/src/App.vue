@@ -4,7 +4,14 @@ import MyHello from "@/components/MyHello.vue";
 
 <template>
   <h1>Crypolt blog</h1>
-  <my-hello title="Puma" :price="9500" :isAdded="true" />
-  <my-hello/>
+  <br>
+  <my-hello title="Puma" :price="9500" is-added>
+    <button>Add</button>
+  </my-hello>
+  <br>
+  <my-hello>
+    <h1>send</h1>
+  </my-hello>
+  <br>
   <my-hello/>
 </template>

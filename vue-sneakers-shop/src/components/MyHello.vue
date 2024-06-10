@@ -7,11 +7,12 @@
 //     console.log(count)
 //   }
 
-defineProps({
+const props = defineProps({
   title: String,
   price: Number,
   isAdded: Boolean
 });
+console.log(props)
 
 </script>
 
@@ -24,6 +25,7 @@ defineProps({
     <h2>Product: {{title}}</h2>
     <h3>Price: {{price}}</h3>
     <h3>Added: {{isAdded}}</h3>
+    <slot></slot>
   </div>
 
 </template>
